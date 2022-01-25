@@ -46,9 +46,26 @@ Route::get('/', function () {
 
 ###########################################################################################
 // User Routes ......
+Route::get('User',[userController::class,'index']);
 Route::get('User/Create',[userController::class,'create']);
-Route::post('User/Register',[userController::class,'Register']);
-Route::get('User/Profile',[userController::class,'profile']);
+Route::post('User/Register',[userController::class,'store']);
+
+Route::get('User/Edit/{id}',[userController::class,'edit']);
+Route::post('User/Update',[userController::class,'update']);
+
+
+Route::get('User/Destroy/{id}',[userController::class,'destroy']);
+
+
+Route::get('Login',[userController::class,'login']);
+Route::post('DoLogin',[userController::class,'doLogin']);
+
+Route::get('LogOut',[userController::class,'logOut']);
+
+
+
+
+// Route::get('User/Profile',[userController::class,'profile']);
 
 
 
