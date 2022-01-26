@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Users;
 
+
 class userController extends Controller
 {
     //
@@ -135,7 +136,7 @@ class userController extends Controller
 
 
 
-         if(auth()->attempt($data)){
+         if(auth()->attempt($data)){     // auth('web')->
 
            return redirect(url('/User'));
 

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\blogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,23 +46,39 @@ Route::get('/', function () {
 //     return view('create');
 // });
 
-###########################################################################################
+###############################################################################################################
+
 // User Routes ......
 Route::get('User',[userController::class,'index']);
 Route::get('User/Create',[userController::class,'create']);
 Route::post('User/Register',[userController::class,'store']);
-
 Route::get('User/Edit/{id}',[userController::class,'edit']);
 Route::post('User/Update',[userController::class,'update']);
-
-
 Route::get('User/Destroy/{id}',[userController::class,'destroy']);
 
+###############################################################################################################
 
 Route::get('Login',[userController::class,'login']);
 Route::post('DoLogin',[userController::class,'doLogin']);
-
 Route::get('LogOut',[userController::class,'logOut']);
+###############################################################################################################
+Route::get('AdminLogin',[adminController::class,'login']);
+Route::post('AdminDoLogin',[adminController::class,'doLogin']);
+Route::get('AdminLogOut',[adminController::class,'logOut']);
+################################################################################################################
+
+Route::resource('Blog',blogController::class);
+
+
+// /Blog         (GET)            ==  Route::get('Blog',[blogController::class,'index']);
+// /Blog/create  (GET)            ==  Route::get('Blog/create',[blogController::class,'create']);
+// /Blog         (post)           ==  Route::post('Blog',[blogController::class,'store']);
+// /Blog/{id}    (GET)            ==  Route::get('Blog/{id}',[blogController::class,'show']);
+// /Blog/{id}/edit    (GET)       ==  Route::get('Blog/{id}/edit',[blogController::class,'edit']);
+// /Blog/{id}    (put)            ==  Route::put('Blog/{id}',[blogController::class,'update']);
+// /Blog/{id}    (delete)         ==  Route::delete('Blog/{id}',[blogController::class,'destory']);
+
+
 
 
 
