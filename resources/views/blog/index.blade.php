@@ -46,7 +46,7 @@
 
         </div>
 
-        <a href="{{url('/Blog/Create')}}">+ Blog</a> || <a href="{{url('/LogOut')}}">LogOut</a>
+        <a href="{{url('/Blog/reate')}}">+ Blog</a> || <a href="{{url('/LogOut')}}">LogOut</a>
 
         <table class='table table-hover table-responsive table-bordered'>
             <!-- creating our table heading -->
@@ -77,7 +77,7 @@
                     <a href='' data-toggle="modal" data-target="#modal_single_del{{$key}}" class='btn btn-danger m-r-1em'>Remove </a>
 
 
-                    <a href='{{url('/User/Edit/'.$raw->id)}}' class='btn btn-primary m-r-1em'>Edit</a>
+                    <a href='{{url('/Blog/'.$raw->id.'/edit')}}' class='btn btn-primary m-r-1em'>Edit</a>
                 </td>
             </tr>
 

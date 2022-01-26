@@ -46,7 +46,7 @@
 
         </div>
 
-        <a href="{{url('/User/Create')}}">+ Account</a> || <a href="{{url('/LogOut')}}">LogOut</a>
+ <a href="{{url('/Blog')}}">Manage Blog</a> || <a href="{{url('/User/Create')}}">+ Account</a> || <a href="{{url('/LogOut')}}">LogOut</a>
 
         <table class='table table-hover table-responsive table-bordered'>
             <!-- creating our table heading -->

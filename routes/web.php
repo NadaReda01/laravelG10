@@ -49,25 +49,33 @@ Route::get('/', function () {
 ###############################################################################################################
 
 // User Routes ......
+
+// Route::middleware(['isLogin'])->group(function(){
+
 Route::get('User',[userController::class,'index']);
-Route::get('User/Create',[userController::class,'create']);
-Route::post('User/Register',[userController::class,'store']);
 Route::get('User/Edit/{id}',[userController::class,'edit']);
 Route::post('User/Update',[userController::class,'update']);
 Route::get('User/Destroy/{id}',[userController::class,'destroy']);
+Route::get('LogOut',[userController::class,'logOut']);
+
+
+// });
+
+Route::resource('Blog',blogController::class);
+
 
 ###############################################################################################################
+Route::get('User/Create',[userController::class,'create']);
+Route::post('User/Register',[userController::class,'store']);
 
 Route::get('Login',[userController::class,'login']);
 Route::post('DoLogin',[userController::class,'doLogin']);
-Route::get('LogOut',[userController::class,'logOut']);
 ###############################################################################################################
 Route::get('AdminLogin',[adminController::class,'login']);
 Route::post('AdminDoLogin',[adminController::class,'doLogin']);
 Route::get('AdminLogOut',[adminController::class,'logOut']);
 ################################################################################################################
 
-Route::resource('Blog',blogController::class);
 
 
 // /Blog         (GET)            ==  Route::get('Blog',[blogController::class,'index']);

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class blogController extends Controller
 {
+
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -105,8 +109,9 @@ class blogController extends Controller
     public function edit($id)
     {
         //
+       $data = blog::find($id);
 
-        dd('edit');
+       return view('blog.edit',['data' => $data]);
     }
 
     /**
@@ -119,6 +124,46 @@ class blogController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = $this->validate($request,[
+            "title"   => "required|min:5",
+            "content" => "required|min:100",
+            "image"   => "nullable|image|mimes:png,jpg"
+          ]);
+
+          # Fetch Raw Data ....
+          $rawData = blog::find($id);
+
+
+         if(request()->hasFile('image')){
+
+            $FinalName = time().rand().'.'.$request->image->extension();
+
+             if($request->image->move(public_path('images'),$FinalName)){
+
+                   unlink(public_path('images/'.$rawData->image));
+
+                }else{
+                    $FinalName = $rawData->image;
+                }
+
+         }else{
+             $FinalName = $rawData->image;
+         }
+
+
+
+         $data['image'] =  $FinalName;
+
+         $op = blog::where('id',$id)->update($data);
+
+         if($op){
+             $message = "Raw Updated";
+         }else{
+             $message = "Error Try Again";
+         }
+
+         session()->flash('Message',$message);
+        return redirect(url('/Blog'));
     }
 
     /**

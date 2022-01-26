@@ -11,17 +11,19 @@ class userController extends Controller
 {
     //
 
+    public  function __construct(){
+
+$this->middleware('isLogin',['except' => ['create','store','login','doLogin']]);
+}
+
+
     public function index(){
 
-     if(auth()->check()){
+
      // code'
       $data =  Users::get();
 
       return view('User.index',['data' => $data]);
-
-     }else{
-         return redirect(url('/Login'));
-     }
 
     }
 
